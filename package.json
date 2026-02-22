@@ -30,6 +30,14 @@
   ],
   "author": "Vedant Jain",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vedant-jain03/tune-in-claude.git"
+  },
+  "homepage": "https://github.com/vedant-jain03/tune-in-claude#readme",
+  "bugs": {
+    "url": "https://github.com/vedant-jain03/tune-in-claude/issues"
+  },
   "dependencies": {
     "axios": "^1.6.7",
     "chalk": "^4.1.2",
