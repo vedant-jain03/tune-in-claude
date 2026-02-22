@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "tool_use:before": {
+      "command": "bash",
+      "args": ["-c", "if [[ \"$TOOL_NAME\" == \"Bash\" ]] || [[ \"$TOOL_NAME\" == \"Task\" ]]; then tune-in signal start 2>/dev/null; fi"]
+    },
+    "tool_use:after": {
+      "command": "bash",
+      "args": ["-c", "if [[ \"$TOOL_NAME\" == \"Bash\" ]] || [[ \"$TOOL_NAME\" == \"Task\" ]]; then tune-in signal stop 2>/dev/null; fi"]
+    }
+  }
+}

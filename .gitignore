@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.env
+.claude/
+test-*.js
+test-example.sh
+CHANGES.md
+CLAUDE_INTEGRATION.md
+FINAL_GUIDE.md
+FIXES.md
+QUICKSTART.md
+SETUP.md
+SIMPLE_INSTALL.md
+SUMMARY.md
+TESTING.md
