@@ -112,8 +112,11 @@ async function main() {
     try {
       await playSpotifyNative();
       const track = await getCurrentTrack();
-      if (track)
+      if (track) {
         console.log(chalk.green(`🎵 Now playing: ${chalk.bold(track.name)}`) + chalk.dim(` by ${track.artist}`) + '\n');
+      } else {
+        console.log(chalk.yellow('⚠️  Spotify is open but no track is loaded — open a playlist in Spotify first\n'));
+      }
     } catch {
       console.log(chalk.yellow('⚠️  Could not start music playback\n'));
     }
@@ -121,13 +124,24 @@ async function main() {
 
   // Spawn Claude inside a real PTY — it gets a full TTY, we see every keystroke.
   // Spawn BEFORE injecting hooks so we have the PID to embed in hook commands.
-  const claude = pty.spawn('claude', claudeArgs, {
-    name: process.env.TERM || 'xterm-256color',
-    cols: process.stdout.columns || 80,
-    rows: process.stdout.rows || 24,
-    cwd: process.cwd(),
-    env: { ...process.env },
-  });
+  let claude: ReturnType<typeof pty.spawn>;
+  try {
+    claude = pty.spawn('claude', claudeArgs, {
+      name: process.env.TERM || 'xterm-256color',
+      cols: process.stdout.columns || 80,
+      rows: process.stdout.rows || 24,
+      cwd: process.cwd(),
+      env: { ...process.env },
+    });
+  } catch (err: any) {
+    if (err.code === 'ENOENT') {
+      console.error(chalk.red('Error: claude command not found.'));
+      console.error(chalk.dim('Install Claude Code: https://claude.ai/code'));
+    } else {
+      console.error(chalk.red(`Error: failed to start claude — ${err.message}`));
+    }
+    process.exit(1);
+  }
 
   // Write the managed claude's PID so hook commands can filter by $PPID
   fs.writeFileSync(PID_FILE, String(claude.pid));
