@@ -1,6 +1,6 @@
 {
   "name": "tune-in-claude",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Music plays while Claude Code thinks, pauses when it needs your input. Vibe-code with AI.",
   "main": "dist/index.js",
   "bin": {
