@@ -4,8 +4,8 @@
   "description": "Music plays while Claude Code thinks, pauses when it needs your input. Vibe-code with AI.",
   "main": "dist/index.js",
   "bin": {
-    "tune-in": "./dist/index.js",
-    "tune-in-claude": "./dist/claude-wrapper.js"
+    "tune-in": "dist/index.js",
+    "tune-in-claude": "dist/claude-wrapper.js"
   },
   "files": [
     "dist/",
